@@ -7,8 +7,6 @@ const rimraf = require('rimraf');
 const rename = require('gulp-rename');
 
 
-
-
 /* -------- Server  -------- */
 gulp.task('server', function() {
   browserSync.init({
@@ -40,15 +38,15 @@ gulp.task('styles:compile', function () {
 
 /* ------------ Sprite ------------- */
 gulp.task('sprite', function(cb) {
-  const spriteData = gulp.src('source/images/icons/*.png').pipe(spritesmith({
-    imgName: 'sprite.png',
-    imgPath: '../images/sprite.png',
-    cssName: 'sprite.scss'
-  }));
+    const spriteData = gulp.src('source/images/icons/*.png').pipe(spritesmith({
+        imgName: 'sprite.png',
+        imgPath: '../images/sprite.png',
+        cssName: 'sprite.scss'
+    }));
 
-  spriteData.img.pipe(gulp.dest('build/images/'));
-  spriteData.css.pipe(gulp.dest('source/styles/global/'));
-  cb();
+    spriteData.img.pipe(gulp.dest('build/images/'));
+    spriteData.css.pipe(gulp.dest('source/styles/global/'));
+    cb();
 });
 
 /* ------------ Delete ------------- */
@@ -78,8 +76,8 @@ gulp.task('watch', function() {
 });
 
 gulp.task('default', gulp.series(
-  'clean',
-  gulp.parallel('templates:compile', 'styles:compile', 'sprite', 'copy'),
-  gulp.parallel('watch', 'server')
-  )
+    'clean',
+    gulp.parallel('templates:compile', 'styles:compile', 'sprite', 'copy'),
+    gulp.parallel('watch', 'server')
+    )
 );
